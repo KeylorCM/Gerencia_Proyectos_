@@ -1,0 +1,26 @@
+﻿@model Gerencia_Proyectos_.Models.Mesas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Mesas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumMesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumMesa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdMesa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

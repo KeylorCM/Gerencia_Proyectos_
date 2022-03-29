@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    
+}
+
+@*<div class="jumbotron">
+    <a href="https://localhost:44384/Home/Index">content</a>
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>*@
+
+
+
+
+@{
+    ViewBag.Title = "Inicio";
+    var listo = Session["Mesa"];
+}
+<section id="intro" class="mt-lg-5 mt-sm-2">
+    <div class="container">
+        @{
+            if (listo != null)
+            {
+                <div class="text-center mt-3">
+                    <p>Bienvenido(a) usted esta en la mesa # @ViewData["n-mesa"]</p>
+                </div>
+            }
+        }
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mb-sm-2">
+                <h2 class="mt-5">
+                    Cafeteria el Divino nino
+                </h2>
+                <p class="mt-5">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minus debitis odit delectus hic praesentium! Esse quasi officiis aspernatur nulla nam labore inventore voluptatum et? Aspernatur voluptatum ex animi voluptatem?
+                </p>
+                <div class="row">
+                    @{
+                        if (listo != null)
+                        {
+                            <div class="col-sm-12 col-md-6 mb-2 mb-lg-0">
+                                <a href="menuPrincipal.html" class="btn w-100 btn-outline-secondary btn-lg-text-center">Menu</a>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <a href="pedido.html" class="btn w-100 btn-outline-secondary btn-lg-text-center">Ver pedido</a>
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-6 mt-2 mt-lg-0">
+                <img class="img-thumbnail img-fluid mt-sm-2" src="~/Publica/img/blog1.jpg" alt="complemeto">
+            </div>
+        </div>
+    </div>
+</section>

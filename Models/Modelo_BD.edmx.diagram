@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67a501de87c745c49e1e084e7a2b010d" Name="Diagram1">
+        <EntityTypeShape EntityType="gp_CafeteriaModel.CajasRecepcion" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gp_CafeteriaModel.Detalle_Factura" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gp_CafeteriaModel.Factura" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gp_CafeteriaModel.MenuProductos" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gp_CafeteriaModel.Mesas" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gp_CafeteriaModel.OrdenPedidos" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gp_CafeteriaModel.Personal" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__CajasRece__IdOrd__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__CajasRece__IDPro__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__CajasRece__IdUsu__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__Detalle_F__Id_Ca__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__Detalle_F__id_fa__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__Detalle_F__id_fa__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__Detalle_F__Id_Or__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__Factura__NumClie__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__Factura__NumClie__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__OrdenPedi__IDPro__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="gp_CafeteriaModel.FK__OrdenPedi__IdMes__2B3F6F97" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Gerencia_Proyectos_.Models.OrdenPedidos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrpción)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuProductos.CodiProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mesas.NumMesa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrpción)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuProductos.CodiProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mesas.NumMesa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdOrden }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdOrden }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdOrden })
+        </td>
+    </tr>
+}
+
+</table>

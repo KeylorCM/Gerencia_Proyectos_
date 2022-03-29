@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="gp_CafeteriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CajasRecepcion">
+          <Key>
+            <PropertyRef Name="IdCaja" />
+          </Key>
+          <Property Name="IdCaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="varchar" MaxLength="15" />
+          <Property Name="IdOrden" Type="int" />
+          <Property Name="IDProd" Type="int" />
+          <Property Name="EstadoPedido" Type="nvarchar" MaxLength="10" />
+          <Property Name="TipoProd" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="DescProd" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PrecioProd" Type="money" Nullable="false" />
+          <Property Name="CantProd" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle_Factura">
+          <Key>
+            <PropertyRef Name="id_detalleFactura" />
+          </Key>
+          <Property Name="id_detalleFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_factura" Type="int" />
+          <Property Name="Id_Orden" Type="int" />
+          <Property Name="Id_Mesa" Type="int" />
+          <Property Name="Id_Caja" Type="int" />
+          <Property Name="cantidad_articulo" Type="int" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="id_factura" />
+          </Key>
+          <Property Name="id_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="3" StoreGeneratedPattern="Computed" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="NumCliente" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="MONEY" Type="int" />
+        </EntityType>
+        <EntityType Name="MenuProductos">
+          <Key>
+            <PropertyRef Name="IDProd" />
+          </Key>
+          <Property Name="IDProd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodiProd" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TipoProd" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="DescProd" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PrecioProd" Type="money" Nullable="false" />
+          <Property Name="CantProd" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesas">
+          <Key>
+            <PropertyRef Name="IdMesa" />
+          </Key>
+          <Property Name="IdMesa" Type="int" Nullable="false" />
+          <Property Name="NumMesa" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="OrdenPedidos">
+          <Key>
+            <PropertyRef Name="IdOrden" />
+          </Key>
+          <Property Name="IdOrden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodProd" Type="nvarchar" MaxLength="5" />
+          <Property Name="IDProd" Type="int" />
+          <Property Name="IdMesa" Type="int" />
+          <Property Name="Descrpción" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="1" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Puesto" Type="varchar" MaxLength="15" />
+          <Property Name="Cedula" Type="varchar" MaxLength="25" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="25" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" />
+          <Property Name="Correo" Type="varchar" MaxLength="25" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <Association Name="FK__CajasRece__IdOrd__2F10007B">
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="0..1" />
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPedidos">
+              <PropertyRef Name="IdOrden" />
+            </Principal>
+            <Dependent Role="CajasRecepcion">
+              <PropertyRef Name="IdOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajasRece__IDPro__300424B4">
+          <End Role="MenuProductos" Type="Self.MenuProductos" Multiplicity="0..1" />
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuProductos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="CajasRecepcion">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajasRece__IdUsu__2E1BDC42">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CajasRecepcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__Id_Ca__398D8EEE">
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CajasRecepcion">
+              <PropertyRef Name="IdCaja" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="Id_Caja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__id_fa__36B12243">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="id_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__id_fa__38996AB5">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="id_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__Id_Or__37A5467C">
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPedidos">
+              <PropertyRef Name="IdOrden" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="Id_Orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__NumClie__32E0915F">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="NumCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__NumClie__33D4B598">
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPedidos">
+              <PropertyRef Name="IdOrden" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="NumCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdMes__2B3F6F97">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="OrdenPedidos">
+              <PropertyRef Name="IdMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IDPro__2A4B4B5E">
+          <End Role="MenuProductos" Type="Self.MenuProductos" Multiplicity="0..1" />
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuProductos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="OrdenPedidos">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gp_CafeteriaModelStoreContainer">
+          <EntitySet Name="CajasRecepcion" EntityType="Self.CajasRecepcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Factura" EntityType="Self.Detalle_Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuProductos" EntityType="Self.MenuProductos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesas" EntityType="Self.Mesas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenPedidos" EntityType="Self.OrdenPedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CajasRece__IdOrd__2F10007B" Association="Self.FK__CajasRece__IdOrd__2F10007B">
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajasRece__IDPro__300424B4" Association="Self.FK__CajasRece__IDPro__300424B4">
+            <End Role="MenuProductos" EntitySet="MenuProductos" />
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajasRece__IdUsu__2E1BDC42" Association="Self.FK__CajasRece__IdUsu__2E1BDC42">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__Id_Ca__398D8EEE" Association="Self.FK__Detalle_F__Id_Ca__398D8EEE">
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__id_fa__36B12243" Association="Self.FK__Detalle_F__id_fa__36B12243">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__id_fa__38996AB5" Association="Self.FK__Detalle_F__id_fa__38996AB5">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__Id_Or__37A5467C" Association="Self.FK__Detalle_F__Id_Or__37A5467C">
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__NumClie__32E0915F" Association="Self.FK__Factura__NumClie__32E0915F">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__NumClie__33D4B598" Association="Self.FK__Factura__NumClie__33D4B598">
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdMes__2B3F6F97" Association="Self.FK__OrdenPedi__IdMes__2B3F6F97">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IDPro__2A4B4B5E" Association="Self.FK__OrdenPedi__IDPro__2A4B4B5E">
+            <End Role="MenuProductos" EntitySet="MenuProductos" />
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gp_CafeteriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CajasRecepcion">
+          <Key>
+            <PropertyRef Name="IdCaja" />
+          </Key>
+          <Property Name="IdCaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="IdOrden" Type="Int32" />
+          <Property Name="IDProd" Type="Int32" />
+          <Property Name="EstadoPedido" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TipoProd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescProd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrecioProd" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CantProd" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrdenPedidos" Relationship="Self.FK__CajasRece__IdOrd__2F10007B" FromRole="CajasRecepcion" ToRole="OrdenPedidos" />
+          <NavigationProperty Name="MenuProductos" Relationship="Self.FK__CajasRece__IDPro__300424B4" FromRole="CajasRecepcion" ToRole="MenuProductos" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK__CajasRece__IdUsu__2E1BDC42" FromRole="CajasRecepcion" ToRole="Personal" />
+          <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK__Detalle_F__Id_Ca__398D8EEE" FromRole="CajasRecepcion" ToRole="Detalle_Factura" />
+        </EntityType>
+        <EntityType Name="Detalle_Factura">
+          <Key>
+            <PropertyRef Name="id_detalleFactura" />
+          </Key>
+          <Property Name="id_detalleFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_factura" Type="Int32" />
+          <Property Name="Id_Orden" Type="Int32" />
+          <Property Name="Id_Mesa" Type="Int32" />
+          <Property Name="Id_Caja" Type="Int32" />
+          <Property Name="cantidad_articulo" Type="Int32" />
+          <NavigationProperty Name="CajasRecepcion" Relationship="Self.FK__Detalle_F__Id_Ca__398D8EEE" FromRole="Detalle_Factura" ToRole="CajasRecepcion" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__Detalle_F__id_fa__36B12243" FromRole="Detalle_Factura" ToRole="Factura" />
+          <NavigationProperty Name="Mesas" Relationship="Self.FK__Detalle_F__id_fa__38996AB5" FromRole="Detalle_Factura" ToRole="Mesas" />
+          <NavigationProperty Name="OrdenPedidos" Relationship="Self.FK__Detalle_F__Id_Or__37A5467C" FromRole="Detalle_Factura" ToRole="OrdenPedidos" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="id_factura" />
+          </Key>
+          <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="NumCliente" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="MONEY" Type="Int32" />
+          <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK__Detalle_F__id_fa__36B12243" FromRole="Factura" ToRole="Detalle_Factura" />
+          <NavigationProperty Name="Mesas" Relationship="Self.FK__Factura__NumClie__32E0915F" FromRole="Factura" ToRole="Mesas" />
+          <NavigationProperty Name="OrdenPedidos" Relationship="Self.FK__Factura__NumClie__33D4B598" FromRole="Factura" ToRole="OrdenPedidos" />
+        </EntityType>
+        <EntityType Name="MenuProductos">
+          <Key>
+            <PropertyRef Name="IDProd" />
+          </Key>
+          <Property Name="IDProd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodiProd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TipoProd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescProd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrecioProd" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CantProd" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CajasRecepcion" Relationship="Self.FK__CajasRece__IDPro__300424B4" FromRole="MenuProductos" ToRole="CajasRecepcion" />
+          <NavigationProperty Name="OrdenPedidos" Relationship="Self.FK__OrdenPedi__IDPro__2A4B4B5E" FromRole="MenuProductos" ToRole="OrdenPedidos" />
+        </EntityType>
+        <EntityType Name="Mesas">
+          <Key>
+            <PropertyRef Name="IdMesa" />
+          </Key>
+          <Property Name="IdMesa" Type="Int32" Nullable="false" />
+          <Property Name="NumMesa" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK__Detalle_F__id_fa__38996AB5" FromRole="Mesas" ToRole="Detalle_Factura" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__NumClie__32E0915F" FromRole="Mesas" ToRole="Factura" />
+          <NavigationProperty Name="OrdenPedidos" Relationship="Self.FK__OrdenPedi__IdMes__2B3F6F97" FromRole="Mesas" ToRole="OrdenPedidos" />
+        </EntityType>
+        <EntityType Name="OrdenPedidos">
+          <Key>
+            <PropertyRef Name="IdOrden" />
+          </Key>
+          <Property Name="IdOrden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodProd" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IDProd" Type="Int32" />
+          <Property Name="IdMesa" Type="Int32" />
+          <Property Name="Descrpción" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Total" Type="Int32" />
+          <NavigationProperty Name="CajasRecepcion" Relationship="Self.FK__CajasRece__IdOrd__2F10007B" FromRole="OrdenPedidos" ToRole="CajasRecepcion" />
+          <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK__Detalle_F__Id_Or__37A5467C" FromRole="OrdenPedidos" ToRole="Detalle_Factura" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__NumClie__33D4B598" FromRole="OrdenPedidos" ToRole="Factura" />
+          <NavigationProperty Name="MenuProductos" Relationship="Self.FK__OrdenPedi__IDPro__2A4B4B5E" FromRole="OrdenPedidos" ToRole="MenuProductos" />
+          <NavigationProperty Name="Mesas" Relationship="Self.FK__OrdenPedi__IdMes__2B3F6F97" FromRole="OrdenPedidos" ToRole="Mesas" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Puesto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CajasRecepcion" Relationship="Self.FK__CajasRece__IdUsu__2E1BDC42" FromRole="Personal" ToRole="CajasRecepcion" />
+        </EntityType>
+        <Association Name="FK__CajasRece__IdOrd__2F10007B">
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="0..1" />
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPedidos">
+              <PropertyRef Name="IdOrden" />
+            </Principal>
+            <Dependent Role="CajasRecepcion">
+              <PropertyRef Name="IdOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajasRece__IDPro__300424B4">
+          <End Role="MenuProductos" Type="Self.MenuProductos" Multiplicity="0..1" />
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuProductos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="CajasRecepcion">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajasRece__IdUsu__2E1BDC42">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CajasRecepcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__Id_Ca__398D8EEE">
+          <End Role="CajasRecepcion" Type="Self.CajasRecepcion" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CajasRecepcion">
+              <PropertyRef Name="IdCaja" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="Id_Caja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__id_fa__36B12243">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="id_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__id_fa__38996AB5">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="id_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_F__Id_Or__37A5467C">
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="0..1" />
+          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPedidos">
+              <PropertyRef Name="IdOrden" />
+            </Principal>
+            <Dependent Role="Detalle_Factura">
+              <PropertyRef Name="Id_Orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__NumClie__32E0915F">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="NumCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__NumClie__33D4B598">
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPedidos">
+              <PropertyRef Name="IdOrden" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="NumCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IDPro__2A4B4B5E">
+          <End Role="MenuProductos" Type="Self.MenuProductos" Multiplicity="0..1" />
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuProductos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="OrdenPedidos">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdMes__2B3F6F97">
+          <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
+          <End Role="OrdenPedidos" Type="Self.OrdenPedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesas">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="OrdenPedidos">
+              <PropertyRef Name="IdMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gp_CafeteriaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CajasRecepcion" EntityType="Self.CajasRecepcion" />
+          <EntitySet Name="Detalle_Factura" EntityType="Self.Detalle_Factura" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" />
+          <EntitySet Name="MenuProductos" EntityType="Self.MenuProductos" />
+          <EntitySet Name="Mesas" EntityType="Self.Mesas" />
+          <EntitySet Name="OrdenPedidos" EntityType="Self.OrdenPedidos" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" />
+          <AssociationSet Name="FK__CajasRece__IdOrd__2F10007B" Association="Self.FK__CajasRece__IdOrd__2F10007B">
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajasRece__IDPro__300424B4" Association="Self.FK__CajasRece__IDPro__300424B4">
+            <End Role="MenuProductos" EntitySet="MenuProductos" />
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajasRece__IdUsu__2E1BDC42" Association="Self.FK__CajasRece__IdUsu__2E1BDC42">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__Id_Ca__398D8EEE" Association="Self.FK__Detalle_F__Id_Ca__398D8EEE">
+            <End Role="CajasRecepcion" EntitySet="CajasRecepcion" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__id_fa__36B12243" Association="Self.FK__Detalle_F__id_fa__36B12243">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__id_fa__38996AB5" Association="Self.FK__Detalle_F__id_fa__38996AB5">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_F__Id_Or__37A5467C" Association="Self.FK__Detalle_F__Id_Or__37A5467C">
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__NumClie__32E0915F" Association="Self.FK__Factura__NumClie__32E0915F">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__NumClie__33D4B598" Association="Self.FK__Factura__NumClie__33D4B598">
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IDPro__2A4B4B5E" Association="Self.FK__OrdenPedi__IDPro__2A4B4B5E">
+            <End Role="MenuProductos" EntitySet="MenuProductos" />
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdMes__2B3F6F97" Association="Self.FK__OrdenPedi__IdMes__2B3F6F97">
+            <End Role="Mesas" EntitySet="Mesas" />
+            <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gp_CafeteriaModelStoreContainer" CdmEntityContainer="gp_CafeteriaEntities">
+          <EntitySetMapping Name="CajasRecepcion">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.CajasRecepcion">
+              <MappingFragment StoreEntitySet="CajasRecepcion">
+                <ScalarProperty Name="IdCaja" ColumnName="IdCaja" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdOrden" ColumnName="IdOrden" />
+                <ScalarProperty Name="IDProd" ColumnName="IDProd" />
+                <ScalarProperty Name="EstadoPedido" ColumnName="EstadoPedido" />
+                <ScalarProperty Name="TipoProd" ColumnName="TipoProd" />
+                <ScalarProperty Name="DescProd" ColumnName="DescProd" />
+                <ScalarProperty Name="PrecioProd" ColumnName="PrecioProd" />
+                <ScalarProperty Name="CantProd" ColumnName="CantProd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Factura">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.Detalle_Factura">
+              <MappingFragment StoreEntitySet="Detalle_Factura">
+                <ScalarProperty Name="id_detalleFactura" ColumnName="id_detalleFactura" />
+                <ScalarProperty Name="id_factura" ColumnName="id_factura" />
+                <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+                <ScalarProperty Name="Id_Mesa" ColumnName="Id_Mesa" />
+                <ScalarProperty Name="Id_Caja" ColumnName="Id_Caja" />
+                <ScalarProperty Name="cantidad_articulo" ColumnName="cantidad_articulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factura">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.Factura">
+              <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="id_factura" ColumnName="id_factura" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="NumCliente" ColumnName="NumCliente" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuProductos">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.MenuProductos">
+              <MappingFragment StoreEntitySet="MenuProductos">
+                <ScalarProperty Name="IDProd" ColumnName="IDProd" />
+                <ScalarProperty Name="CodiProd" ColumnName="CodiProd" />
+                <ScalarProperty Name="TipoProd" ColumnName="TipoProd" />
+                <ScalarProperty Name="DescProd" ColumnName="DescProd" />
+                <ScalarProperty Name="PrecioProd" ColumnName="PrecioProd" />
+                <ScalarProperty Name="CantProd" ColumnName="CantProd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesas">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.Mesas">
+              <MappingFragment StoreEntitySet="Mesas">
+                <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+                <ScalarProperty Name="NumMesa" ColumnName="NumMesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenPedidos">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.OrdenPedidos">
+              <MappingFragment StoreEntitySet="OrdenPedidos">
+                <ScalarProperty Name="IdOrden" ColumnName="IdOrden" />
+                <ScalarProperty Name="CodProd" ColumnName="CodProd" />
+                <ScalarProperty Name="IDProd" ColumnName="IDProd" />
+                <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+                <ScalarProperty Name="Descrpción" ColumnName="Descrpción" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal">
+            <EntityTypeMapping TypeName="gp_CafeteriaModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

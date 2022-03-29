@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Gerencia_Proyectos_.Models.Detalle_Factura>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Mesa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad_articulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CajasRecepcion.IdUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Factura.codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mesas.NumMesa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdenPedidos.CodProd)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Mesa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad_articulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CajasRecepcion.IdUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Factura.codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mesas.NumMesa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrdenPedidos.CodProd)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_detalleFactura }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_detalleFactura }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_detalleFactura })
+        </td>
+    </tr>
+}
+
+</table>
