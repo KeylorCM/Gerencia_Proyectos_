@@ -21,6 +21,8 @@ namespace Gerencia_Proyectos_.Controllers
             return View(cajasRecepcion.ToList());
         }
 
+        //Nuevo comentario
+
         // GET: CajasRecepcions/Details/5
         public ActionResult Details(int? id)
         {
