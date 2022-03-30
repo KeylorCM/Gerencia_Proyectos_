@@ -10,6 +10,23 @@ namespace Gerencia_Proyectos_.Controllers
     {
         public ActionResult Index()
         {
+            try
+            {
+                Session["Mesa"] = Request.QueryString["mesa"];
+                int NumMesa = int.Parse(Request.QueryString["mesa"]);
+                if (NumMesa > 15)
+                {
+                    Session["Mesa"] = null;
+                }
+                else
+                {
+                    ViewData["n-mesa"] = Session["Mesa"];
+                }
+            }
+            catch
+            {
+
+            }
             return View();
         }
 
