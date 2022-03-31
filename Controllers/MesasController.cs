@@ -17,7 +17,7 @@ namespace Gerencia_Proyectos_.Controllers
         // GET: Mesas
         public ActionResult Index()
         {
-            return View(db.Mesas.ToList());
+            return View();
         }
 
         // GET: Mesas/Details/5
