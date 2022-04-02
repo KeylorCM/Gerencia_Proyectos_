@@ -4,26 +4,37 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>MenuProductos</h4>
+    <div class="container m-5">
+        <h4 class="text-center text-info">MenuProductos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        <div>
             @Html.LabelFor(model => model.CodiProd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CodiProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CodiProd, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
+        <label class="pl-3">
+            1.Bebidas calientes
+        </label>
+        <br />
+        <label class="pl-3">
+            2.Bebidas frias
+        </label>
+        <br />
+        <label class="pl-3">
+            3.Reposteria dulce
+        </label>
+        <br />
+        <label class="pl-3">
+            4.Reposteria salada
+        </label>
+        <div>
             @Html.LabelFor(model => model.TipoProd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TipoProd, new { htmlAttributes = new { @class = "form-control" } })
@@ -31,7 +42,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div>
             @Html.LabelFor(model => model.DescProd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DescProd, new { htmlAttributes = new { @class = "form-control" } })
@@ -39,7 +50,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div>
             @Html.LabelFor(model => model.PrecioProd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PrecioProd, new { htmlAttributes = new { @class = "form-control" } })
@@ -47,7 +58,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div>
             @Html.LabelFor(model => model.CantProd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CantProd, new { htmlAttributes = new { @class = "form-control" } })
@@ -55,10 +66,8 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <div class="col-md-offset-2 col-md-10 mt-5 text-right">
+            <input type="submit" value="Crear" class="btn btn-success" />
         </div>
     </div>
 }

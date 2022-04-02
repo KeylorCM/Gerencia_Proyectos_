@@ -31,11 +31,17 @@ namespace Gerencia_Proyectos_.Controllers
         }
         public ActionResult Login()
         {
+            Session["login"] = true;
             return View();
         }
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
+            if (email != "" && password !="" && password != "admin")
+            {
+                Session["login"] = true;
+                return Redirect(Url.Content("/Administrador/index"));
+            }
             Console.WriteLine(email,password);
             return View();
         }
