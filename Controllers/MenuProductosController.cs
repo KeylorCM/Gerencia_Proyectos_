@@ -123,5 +123,16 @@ namespace Gerencia_Proyectos_.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        public ActionResult MenuPrincipal()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MenuPrincipal(string categoriaID)
+        {
+            Console.WriteLine(categoriaID);
+            return View();
+        }
     }
 }

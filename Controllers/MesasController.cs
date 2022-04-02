@@ -17,7 +17,6 @@ namespace Gerencia_Proyectos_.Controllers
         // GET: Mesas
         public ActionResult Index()
         {
-            bool est = true;
             ViewData["estado"] = "1";
             ViewData["mesa"] = "";
             return View();
