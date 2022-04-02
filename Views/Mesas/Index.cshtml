@@ -1,94 +1,65 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    var esta = ViewData["estado"];
+    var mesa = ViewData["mesa"];
 }
 
 <div class="container mt-3 mb-5">
-    <h1 class="text-center text-dark m-5">Mesas</h1>
-    <div class="row">
-        <div class="col-md-4 col-sm-12 mt-3">
-            <!-- card para los proeudctos-->
-            <div class="card text-center">
-                <div class="card-body">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png" />
+    @{
+        if (esta == "1")
+        {
+            <h1 class="text-center text-dark m-5">Mesas</h1>
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <!-- card para los proeudctos-->
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #1</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=1 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer bg-secondary">
-                    <h6 class="mt-2 text-white font-weight-bold lead">Mesa #1</h6>
-                    <a class="btn btn-success mb-2" href="pedido.html">Ver pedido</a>
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #2</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=2 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mt-3">
-            <!-- card para los proeudctos-->
-            <div class="card text-center">
-                <div class="card-body">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png" />
-                </div>
-                <div class="footer bg-secondary">
-                    <h6 class="mt-2 text-white font-weight-bold lead">Mesa #2</h6>
-                    <a class="btn btn-success mb-2" href="pedido.html">Ver pedido</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mt-3 ">
-            <!-- card para los proeudctos-->
-            <div class="card text-center ">
-                <div class="card-body ">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
-                </div>
-                <div class="footer bg-secondary ">
-                    <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #3</h6>
-                    <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mt-3 ">
-            <!-- card para los proeudctos-->
-            <div class="card text-center ">
-                <div class="card-body ">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
-                </div>
-                <div class="footer bg-secondary ">
-                    <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #4</h6>
-                    <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mt-3 ">
-            <!-- card para los proeudctos-->
-            <div class="card text-center ">
-                <div class="card-body ">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
-                </div>
-                <div class="footer bg-secondary ">
-                    <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #5</h6>
-                    <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <!-- card para los proeudctos-->
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #3</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=3 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mt-3 ">
-            <!-- card para los proeudctos-->
-            <div class="card text-center ">
-                <div class="card-body ">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
-                </div>
-                <div class="footer bg-secondary ">
-                    <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #6</h6>
-                    <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mt-3 ">
-            <!-- card para los proeudctos-->
-            <div class="card text-center ">
-                <div class="card-body ">
-                    <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
-                </div>
-                <div class="footer bg-secondary ">
-                    <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #7</h6>
-                    <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        }
+        else
+        {
+            <h1 class="text-center text-dark m-5">Pedidos de mesas</h1>
+        }
+    }
 </div>
