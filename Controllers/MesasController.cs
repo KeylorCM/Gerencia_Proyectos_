@@ -17,9 +17,19 @@ namespace Gerencia_Proyectos_.Controllers
         // GET: Mesas
         public ActionResult Index()
         {
+            bool est = true;
+            ViewData["estado"] = "1";
+            ViewData["mesa"] = "";
             return View();
         }
+        [HttpPost]
+        public ActionResult Index(int mesa)
+        {
+            ViewData["mesa"] = Convert.ToString(mesa);
+            ViewData["estado"] = "2";
 
+            return View();
+        }
         // GET: Mesas/Details/5
         public ActionResult Details(int? id)
         {

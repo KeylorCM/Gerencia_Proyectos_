@@ -29,18 +29,14 @@ namespace Gerencia_Proyectos_.Controllers
             }
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Login(string email, string password)
         {
-            ViewBag.Message = "Your contact page.";
-
+            Console.WriteLine(email,password);
             return View();
         }
     }
