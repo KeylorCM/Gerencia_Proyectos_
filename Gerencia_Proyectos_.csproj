@@ -280,6 +280,7 @@
     <Content Include="Views\Detalle_Factura\Edit.cshtml" />
     <Content Include="Views\Detalle_Factura\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\MenuProductos\MenuPrincipal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
