@@ -40,6 +40,7 @@ namespace Gerencia_Proyectos_.Controllers
             if (email != "" && password !="" && password != "admin")
             {
                 Session["login"] = true;
+                Session["rol"] = "admin";
                 return Redirect(Url.Content("/Administrador/index"));
             }
             Console.WriteLine(email,password);
