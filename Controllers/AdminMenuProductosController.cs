@@ -10,17 +10,17 @@ using Gerencia_Proyectos_.Models;
 
 namespace Gerencia_Proyectos_.Controllers
 {
-    public class MenuProductosController : Controller
+    public class AdminMenuProductosController : Controller
     {
         private gp_CafeteriaEntities db = new gp_CafeteriaEntities();
 
-        // GET: MenuProductos
+        // GET: AdminMenuProductos
         public ActionResult Index()
         {
             return View(db.MenuProductos.ToList());
         }
 
-        // GET: MenuProductos/Details/5
+        // GET: AdminMenuProductos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace Gerencia_Proyectos_.Controllers
             return View(menuProductos);
         }
 
-        // GET: MenuProductos/Create
+        // GET: AdminMenuProductos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MenuProductos/Create
+        // POST: AdminMenuProductos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,7 @@ namespace Gerencia_Proyectos_.Controllers
             return View(menuProductos);
         }
 
-        // GET: MenuProductos/Edit/5
+        // GET: AdminMenuProductos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace Gerencia_Proyectos_.Controllers
             return View(menuProductos);
         }
 
-        // POST: MenuProductos/Edit/5
+        // POST: AdminMenuProductos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +89,7 @@ namespace Gerencia_Proyectos_.Controllers
             return View(menuProductos);
         }
 
-        // GET: MenuProductos/Delete/5
+        // GET: AdminMenuProductos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace Gerencia_Proyectos_.Controllers
             return View(menuProductos);
         }
 
-        // POST: MenuProductos/Delete/5
+        // POST: AdminMenuProductos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -123,29 +123,5 @@ namespace Gerencia_Proyectos_.Controllers
             }
             base.Dispose(disposing);
         }
-        
-        public ActionResult MenuPrincipal()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult MenuPrincipal(string categoriaID)
-        {
-            Console.WriteLine(categoriaID);
-            return View();
-        }
-
-
-        //public ActionResult AdminProductos()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult AdminProductos(string codiProd)
-        //{
-        //    Console.WriteLine(codiProd);
-        //    return View(db.MenuProductos.ToList());
-        //}
-
     }
 }
