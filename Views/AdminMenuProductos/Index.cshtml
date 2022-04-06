@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Gerencia_Proyectos_.Models.MenuProductos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Menu Principal de Productos</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo producto", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.CodiProd)*@
+            Codigo
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TipoProd)*@
+            Tipo de Producto
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantProd)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodiProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantProd)
+        </td>
+        <td>
+            @Html.ActionLink("Actualizar", "Edit", new { id=item.IDProd }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.IDProd }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDProd })
+        </td>
+    </tr>
+}
+
+</table>

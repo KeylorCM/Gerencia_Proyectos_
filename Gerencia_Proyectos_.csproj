@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\AdminMenuProductosController.cs" />
     <Compile Include="Controllers\CajasRecepcionsController.cs" />
     <Compile Include="Controllers\Detalle_FacturaController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
@@ -234,7 +235,6 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\Login.js" />
-    <Content Include="Views\MenuProductos\pageSuperAdmin.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -285,6 +285,11 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\MenuProductos\MenuPrincipal.cshtml" />
     <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\AdminMenuProductos\Create.cshtml" />
+    <Content Include="Views\AdminMenuProductos\Delete.cshtml" />
+    <Content Include="Views\AdminMenuProductos\Details.cshtml" />
+    <Content Include="Views\AdminMenuProductos\Edit.cshtml" />
+    <Content Include="Views\AdminMenuProductos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
