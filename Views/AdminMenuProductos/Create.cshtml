@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2 class="text-center my-4">Crear nuevo producto</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>MenuProductos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CodiProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.CodiProd, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="ml-3">Codigo producto</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CodiProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CodiProd, "", new { @class = "text-danger" })
@@ -24,7 +24,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.TipoProd, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="ml-3">Tipo producto</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TipoProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TipoProd, "", new { @class = "text-danger" })
@@ -32,7 +33,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DescProd, htmlAttributes: new { @class = "control-label col-md-2" })
+           @* @Html.LabelFor(model => model.DescProd, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="ml-3">Descripcion</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DescProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DescProd, "", new { @class = "text-danger" })
@@ -40,7 +42,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PrecioProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.PrecioProd, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="ml-3">Precio</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PrecioProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PrecioProd, "", new { @class = "text-danger" })
@@ -48,7 +51,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CantProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.CantProd, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="ml-3">Cantidad</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CantProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CantProd, "", new { @class = "text-danger" })
@@ -57,14 +61,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear productos" class="btn btn-success text-right" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index")
 </div>
 
 @section Scripts {

@@ -4,55 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h4 class="text-center text-info mt-5">Detalle producto</h4>
 
-<div>
-    <h4>MenuProductos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CodiProd)
-        </dt>
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">@Html.DisplayFor(model => model.CodiProd)</th>
+                <td>@Html.DisplayFor(model => model.TipoProd)</td>
+                <td>@Html.DisplayFor(model => model.DescProd)</td>
+                <td>@Html.DisplayFor(model => model.PrecioProd)</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.CodiProd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoProd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoProd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DescProd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DescProd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecioProd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PrecioProd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CantProd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CantProd)
-        </dd>
-
-    </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDProd }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDProd }) |
+    @Html.ActionLink("Volver", "Index")
 </p>
