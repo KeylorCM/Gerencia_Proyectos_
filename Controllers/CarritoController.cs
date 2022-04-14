@@ -8,6 +8,7 @@ using System.Web.Mvc;
 namespace Gerencia_Proyectos_.Controllers
 {
 
+r
     public class CarritoController : Controller
     {
         // GET: AgregarCarrito
@@ -25,6 +26,7 @@ namespace Gerencia_Proyectos_.Controllers
         public ActionResult AgregarCarrito(int ID)
         {
 
+
             if (Session["carrito"] == null)
             {
                 List<CarritoItem> compras = new List<CarritoItem>();
@@ -35,6 +37,7 @@ namespace Gerencia_Proyectos_.Controllers
             else
             {
                 List<CarritoItem> compras = (List<CarritoItem>)Session["carrito"];
+
                 int IndexExistente = getIndex(ID);
                 if (IndexExistente == -1)
                     compras.Add(new CarritoItem(ce.MenuProductos.Find(ID), 1));
@@ -48,7 +51,8 @@ namespace Gerencia_Proyectos_.Controllers
         {
             List<CarritoItem> compras = (List<CarritoItem>)Session["carrito"];
             compras.RemoveAt(getIndex(id));
-            return View("AgregarCarrito");
+            return View("AgregarCarrito"); 
+
         }
         public ActionResult FinalizaCompra()
         {
@@ -65,7 +69,18 @@ namespace Gerencia_Proyectos_.Controllers
                 venta.Cantidad = 1;
                 venta.CodProd = "a";
                 venta.IDProd = 2;
-
+            if(compras != null && compras.Count > 0)
+            {
+                OrdenPedidos venta = new OrdenPedidos();
+                venta.Estado = "1";
+                venta.IdMesa = Convert.ToInt32( Session["Mesa"]);
+                venta.Total = compras.Sum(x => x.Producto.PrecioProd * x.Cantidad);
+                venta.IdOrden = 0;
+                venta.Fecha = DateTime.Now;
+                venta.Descrpción =  "sssss";
+                venta.Cantidad = 1;
+                venta.CodProd = "a";
+                venta.IDProd = 2;
                 ce.OrdenPedidos.Add(venta);
                 ce.SaveChanges();
             }
@@ -77,6 +92,7 @@ namespace Gerencia_Proyectos_.Controllers
 
 
 
+
     //public class CarritoController : Controller
     //{
     //    // GET: Carrito
@@ -85,8 +101,4 @@ namespace Gerencia_Proyectos_.Controllers
     //        return View();
     //    }
 
-
-
-
-    
 }

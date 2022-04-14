@@ -17,8 +17,8 @@ namespace Gerencia_Proyectos_.Controllers
         // GET: Facturas
         public ActionResult Index()
         {
-            var factura = db.Factura.Include(f => f.Mesas).Include(f => f.OrdenPedidos);
-            return View(factura.ToList());
+            //var factura = db.Factura.Include(f => f.Mesas).Include(f => f.OrdenPedidos);
+            return View();
         }
 
         // GET: Facturas/Details/5
@@ -39,7 +39,7 @@ namespace Gerencia_Proyectos_.Controllers
         // GET: Facturas/Create
         public ActionResult Create()
         {
-            ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa");
+           // ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa");
             ViewBag.NumCliente = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd");
             return View();
         }
@@ -58,7 +58,7 @@ namespace Gerencia_Proyectos_.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa", factura.NumCliente);
+           // ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa", factura.NumCliente);
             ViewBag.NumCliente = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd", factura.NumCliente);
             return View(factura);
         }
@@ -75,7 +75,7 @@ namespace Gerencia_Proyectos_.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa", factura.NumCliente);
+           // ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa", factura.NumCliente);
             ViewBag.NumCliente = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd", factura.NumCliente);
             return View(factura);
         }
@@ -93,7 +93,7 @@ namespace Gerencia_Proyectos_.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa", factura.NumCliente);
+            //ViewBag.NumCliente = new SelectList(db.Mesas, "IdMesa", "NumMesa", factura.NumCliente);
             ViewBag.NumCliente = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd", factura.NumCliente);
             return View(factura);
         }
