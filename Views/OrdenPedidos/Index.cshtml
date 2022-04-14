@@ -4,7 +4,75 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Orden - Pedidos</h2>
+
+@*<h3>Productos seleccionados: </h3>
+    <form action="ordenPedidos/OrdenPedidos" method="post">
+        <label>Orden_Numero: <input type="text" name="Numero_Orden" value="" /></label><br />
+        <label>Codigo Producto: <input type="text" name="CodiProd" value="" /></label><br />
+        <label>Mesa: <input type="text" name="IdMesa" value="" /></label><br />
+        <label>Descripcion: <input type="text" name="Descripcion" value="" /></label><br />
+        <label>Catntidad: <input type="number" name="Cantidad" value="" /></label><br />
+        <label>Estado: <input type="text" name="Estado" value="" /></label><br />
+        <label>Fecha: <input type="datetime-local" name="Fecha" value="" /></label><br />
+        <label>Total: <input type="number" name="Total" value="" /></label><br />
+        <input type="submit" name="enviar" value="Enviar" />
+    </form>*@
+
+
+
+<h2>Mi Carrito</h2>
+
+@{
+    ViewBag.Title = "AgregarCarrito";
+}
+
+<h2>Mi Carrito</h2>
+
+<table>
+    <tr>
+        <th> Id </th>
+        <th> TipoProducto </th>
+        <th> Descripcion  </th>
+        <th> Precio </th>
+        <th> Cantidad </th>
+        <th> Total </th>
+
+    </tr>
+    <tbody>
+        @{
+            double total = 0;
+        }
+
+        @if (Session["carrito"] != null)
+        {
+            foreach (var item in Session["carrito"] as List<Gerencia_Proyectos_.Models.CarritoItem>)
+            {
+                total += (double)(item.Cantidad * item.Producto.PrecioProd);
+                <tr>
+                    <td>  @item.Producto.IDProd  </td>
+                    <td>  @item.Producto.TipoProd  </td>
+                    <td>  @item.Producto.DescProd  </td>
+                    <td>  @String.Format(" {0:¢  }", item.Producto.PrecioProd)</td>
+                    <td>  @item.Cantidad</td>
+                    <td>  @String.Format("{0:¢ }", (item.Cantidad * item.Producto.PrecioProd))</td>
+                </tr>
+
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Total </th>
+
+            <th>@String.Format("{0:¢ }", total) </th>
+        </tr>
+    </tfoot>
+
+</table>
+
+
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,6 +81,12 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CodProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuProductos.CodiProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mesas.NumMesa)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descrpción)
@@ -29,47 +103,49 @@
         <th>
             @Html.DisplayNameFor(model => model.Total)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MenuProductos.CodiProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mesas.NumMesa)
-        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodProd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrpción)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MenuProductos.CodiProd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mesas.NumMesa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdOrden }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdOrden }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdOrden })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CodProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descrpción)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cantidad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estado)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.MenuProductos.CodiProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mesas.NumMesa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Fecha)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Total)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.IdOrden }) |
+        @Html.ActionLink("Details", "Details", new { id = item.IdOrden }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.IdOrden })
+    </td>
+</tr>
+    }
 
 </table>
+
+
+
+@Html.ActionLink("Seguir Comprando", "Index", "MenuProductos")
+

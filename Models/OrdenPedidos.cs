@@ -30,7 +30,7 @@ namespace Gerencia_Proyectos_.Models
         public int Cantidad { get; set; }
         public string Estado { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<int> Total { get; set; }
+        public Nullable<decimal> Total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CajasRecepcion> CajasRecepcion { get; set; }
