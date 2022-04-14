@@ -133,7 +133,6 @@
     <Compile Include="Controllers\AdminMenuProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CajasRecepcionsController.cs" />
-    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\Detalle_FacturaController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -291,8 +290,6 @@
     <Content Include="Views\OrdenPedidos\Details.cshtml" />
     <Content Include="Views\OrdenPedidos\Edit.cshtml" />
     <Content Include="Views\OrdenPedidos\Index.cshtml" />
-    <Content Include="Views\Carrito\AgregarCarrito.cshtml" />
-    <Content Include="Views\Carrito\FinalizaCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
