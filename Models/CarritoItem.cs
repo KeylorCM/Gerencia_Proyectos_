@@ -20,7 +20,7 @@ namespace Gerencia_Proyectos_.Models
         {
             this.Producto1 = producto;
             this.Cantidad1 = cantidad;
-
+            //
         }
 
         public MenuProductos Producto { get => Producto1; set => Producto1 = value; }
