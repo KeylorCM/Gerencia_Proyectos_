@@ -8,17 +8,86 @@ using System.Web;
 using System.Web.Mvc;
 using Gerencia_Proyectos_.Models;
 
+ 
 namespace Gerencia_Proyectos_.Controllers
 {
     public class OrdenPedidosController : Controller
     {
         private gp_CafeteriaEntities db = new gp_CafeteriaEntities();
 
-        // GET: OrdenPedidos
+        //public ActionResult OrdenPedidos()
+        //{
+        //    DateTime date = new DateTime();
+
+
+        //    OrdenPedidos orden = new OrdenPedidos();
+        //    orden.IdOrden = +1;                                               //int
+        //    orden.CodProd = Request.Form["CodProd"].ToString();      //string
+        //    orden.IDProd = Convert.ToInt32(Request.Form["IDProd"]);        //int
+        //    orden.IdMesa = Convert.ToInt32(Request.Form["IdMesa"]);            //int
+        //    orden.Descrpción = Request.Form["Descripcion"].ToString();      //string
+        //    orden.Cantidad = Convert.ToInt32(Request.Form["Cantidad"]);         //int
+        //    orden.Estado = Request.Form["Estado"].ToString();      //string
+        //    orden.Fecha = Convert.ToDateTime("Fecha");                         //date.ToString("dd/MM/yyyy HH:mm:ss");               //datetime
+        //    orden.Total = Convert.ToDecimal(Request.Form["Total"]);           //decimal
+
+
+
+        //    var ordenPedidos = db.OrdenPedidos.Include(o => o.MenuProductos).Include(o => o.Mesas);
+        //    return View(ordenPedidos.ToList());
+
+        //}
+
+
+        private gp_CafeteriaEntities ce = new gp_CafeteriaEntities();
+
+       
+
+        public ActionResult AgregarCarrito(int IDProd)
+        {
+            if(Session["carrito"] == null)
+            {
+                List<CarritoItem> compras = new List<CarritoItem>();
+                compras.Add(new CarritoItem(ce.MenuProductos.Find(IDProd), 1));
+                Session["carrito"] = compras;
+
+            }
+            else
+            {
+                List<CarritoItem> compras = (List<CarritoItem>)Session["Carrito"];
+                int IndexExistente = getIndex(IDProd);
+                if (IndexExistente == -1)
+                    compras.Add(new CarritoItem(ce.MenuProductos.Find(IDProd), 1));
+                else
+                    compras[IndexExistente].Cantidad++;
+                Session["carrito"] = compras;
+
+
+            }
+            return View();
+        }
+
+
+        private int getIndex(int id)
+        {
+            List<CarritoItem> compras = (List<CarritoItem>)Session["Carrito"];
+            for(int i=0; i < compras.Count; i++)
+            {
+                if (compras[i].Producto.IDProd == id)
+                    return i;
+
+            }
+            return -1;
+        }
+
+
+
+
+        //GET: OrdenPedidos
         public ActionResult Index()
         {
             var ordenPedidos = db.OrdenPedidos.Include(o => o.MenuProductos).Include(o => o.Mesas);
-            return View(ordenPedidos.ToList());
+            return View(ce.OrdenPedidos.ToList().OrderBy(x=>x.Fecha));
         }
 
         // GET: OrdenPedidos/Details/5
@@ -132,5 +201,9 @@ namespace Gerencia_Proyectos_.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
+
+
     }
 }

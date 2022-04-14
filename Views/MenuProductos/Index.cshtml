@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Gerencia_Proyectos_.Models.MenuProductos>
 
+<add namespace="System.Web.Mvc" />
+
+
+
 @{
     ViewBag.Title = "Index Menu - Productos";
 }
@@ -26,6 +30,60 @@
     <div class="container mt-3 mb-5">
         <h1 class="text-center text-dark m-5">Productos Favoritos</h1>
 
+        @if (Model != null)
+        {
+            <Table>
+                <thead>
+                    <tr>
+                        @*<th>IdOrden </th>*@
+                        @*<th>CodProd </th>*@
+                        <th>IDProd </th>
+                        <th>IdMesa </th>
+                        <th>Descrpción </th>
+                        <th>Cantidad </th>
+                        <th>Estado </th>
+                        <th>Fecha </th>
+                        <th>Total </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IDProd   </td>
+                            <td>@item.CodiProd    </td>
+                            <td>@item.TipoProd    </td>
+                            <td>@item.DescProd    </td>
+                            <td>@string.Format("{0:C}", @item.PrecioProd) </td>
+                            <td>@item.CantProd  </td>
+
+
+                            <td>@Html.ActionLink("Agregar", "AgregarCarrito", "OrdenPedidos", new { id = item.IDProd }, null) </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </Table>
+        }
+
+
+
+
+
+
+        <div class="float-right">
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Comprar", "Index", "MenuProductos")</li>
+                    <li>@Html.ActionLink("Carrito", "Index", "OrdenPedidos")</li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+
         <div class="row">
             <div class="col-md-4 col-sm-12 mt-3">
                 <!-- card para los proeudctos-->
@@ -36,7 +94,7 @@
                     <div class="footer bg-secondary">
                         <h6 class="mt-3 text-white font-weight-bold lead">Bebidas Calientes</h6>
                         <p class="text-white font-weight-bold">Descripcion: <br> <span>Cafe hecho con los mejores productos de CR</span></p>
-                        
+
                         <button class="btn btn-success mb-2" href="producto.html">Ver Menu</button>
                     </div>
                 </div>
@@ -50,7 +108,7 @@
                     <div class="footer bg-secondary">
                         <h6 class="mt-3 text-white font-weight-bold lead">Reposteria Dulce</h6>
                         <p class="text-white font-weight-bold">Descripcion: <br> <span>La mejor variedad en productos dulces</span></p>
-                   
+
                         <button class="btn btn-success mb-2" href="producto.html">Ver Menu</button>
                     </div>
                 </div>
@@ -64,7 +122,7 @@
                     <div class="footer bg-secondary">
                         <h6 class="mt-3 text-white font-weight-bold lead">Reposteria Salada y Sandwich </h6>
                         <p class="text-white font-weight-bold">Descripcion: <br> <span>La mejor variedad en productos salados</span></p>
-                      
+
                         <button class="btn btn-success mb-2" href="producto.html">Ver Menu</button>
                     </div>
                 </div>
@@ -72,10 +130,20 @@
         </div>
     </div>
 
+    <h1>Todos nuestros productos:</h1>
+
     <table class="table">
-        <h1>Todos nuestros productos:</h1>
+
+
+
+
+
+
 
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDProd)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CodiProd)
             </th>
@@ -86,6 +154,9 @@
                 @Html.DisplayNameFor(model => model.DescProd)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CantProd)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PrecioProd)
             </th>
             <th></th>
@@ -94,6 +165,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <th>
+                @Html.DisplayNameFor(model => model.IDProd)
+            </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.CodiProd)
                 </td>
@@ -103,6 +177,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DescProd)
                 </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.CantProd)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PrecioProd)
                 </td>
@@ -110,6 +187,8 @@
 
                     @Html.ActionLink("Detalles", "Details", new { id = item.IDProd }) |
                     <button class="btn btn-success mb-2" href="producto.html">Agregar al pedido</button>
+                    @Html.ActionLink("Agregar", "AgregarCarrito", "OrdenPedidos", new { id = item.IDProd }, null)
+
                 </td>
             </tr>
         }
@@ -128,55 +207,55 @@
 
 
     @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CodiProd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoProd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DescProd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrecioProd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantProd)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CodiProd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoProd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DescProd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioProd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CantProd)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IDProd }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IDProd }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IDProd })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodiProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PrecioProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CantProd)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>*@
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodiProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrecioProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantProd)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.IDProd }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.IDProd }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IDProd })
+                    </td>
+                </tr>
+            }
+
+        </table>*@
 
 </body>
 </html>
