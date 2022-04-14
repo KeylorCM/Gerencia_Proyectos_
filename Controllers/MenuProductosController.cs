@@ -146,6 +146,41 @@ namespace Gerencia_Proyectos_.Controllers
         //    Console.WriteLine(codiProd);
         //    return View(db.MenuProductos.ToList());
         //}
+        private int getIndex(int id)
+        {
+            List<CarritoItem> compras = (List<CarritoItem>)Session["Carrito"];
+            for (int i = 0; i < compras.Count; i++)
+            {
+                if (compras[i].Producto.IDProd == id)
+                    return i;
+
+            }
+            return -1;
+        }
+        private gp_CafeteriaEntities ce = new gp_CafeteriaEntities();
+        public ActionResult AgregarCarrito(int IDProd)
+        {
+            if (Session["carrito"] == null)
+            {
+                List<CarritoItem> compras = new List<CarritoItem>();
+                compras.Add(new CarritoItem(ce.MenuProductos.Find(IDProd), 1));
+                Session["carrito"] = compras;
+
+            }
+            else
+            {
+                List<CarritoItem> compras = (List<CarritoItem>)Session["Carrito"];
+                int IndexExistente = getIndex(IDProd);
+                if (IndexExistente == -1)
+                    compras.Add(new CarritoItem(ce.MenuProductos.Find(IDProd), 1));
+                else
+                    compras[IndexExistente].Cantidad++;
+                Session["carrito"] = compras;
+
+
+            }
+            return View();
+        }
 
     }
 }

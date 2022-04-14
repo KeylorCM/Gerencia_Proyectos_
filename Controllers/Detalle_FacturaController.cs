@@ -17,8 +17,8 @@ namespace Gerencia_Proyectos_.Controllers
         // GET: Detalle_Factura
         public ActionResult Index()
         {
-            var detalle_Factura = db.Detalle_Factura.Include(d => d.CajasRecepcion).Include(d => d.Factura).Include(d => d.Mesas).Include(d => d.OrdenPedidos);
-            return View(detalle_Factura.ToList());
+            //var detalle_Factura = db.Detalle_Factura.Include(d => d.CajasRecepcion).Include(d => d.Factura).Include(d => d.Mesas).Include(d => d.OrdenPedidos);
+            return View();
         }
 
         // GET: Detalle_Factura/Details/5
@@ -41,7 +41,7 @@ namespace Gerencia_Proyectos_.Controllers
         {
             ViewBag.Id_Caja = new SelectList(db.CajasRecepcion, "IdCaja", "IdUsuario");
             ViewBag.id_factura = new SelectList(db.Factura, "id_factura", "codigo");
-            ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa");
+           // ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa");
             ViewBag.Id_Orden = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd");
             return View();
         }
@@ -62,7 +62,7 @@ namespace Gerencia_Proyectos_.Controllers
 
             ViewBag.Id_Caja = new SelectList(db.CajasRecepcion, "IdCaja", "IdUsuario", detalle_Factura.Id_Caja);
             ViewBag.id_factura = new SelectList(db.Factura, "id_factura", "codigo", detalle_Factura.id_factura);
-            ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa", detalle_Factura.id_factura);
+            //ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa", detalle_Factura.id_factura);
             ViewBag.Id_Orden = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd", detalle_Factura.Id_Orden);
             return View(detalle_Factura);
         }
@@ -81,7 +81,7 @@ namespace Gerencia_Proyectos_.Controllers
             }
             ViewBag.Id_Caja = new SelectList(db.CajasRecepcion, "IdCaja", "IdUsuario", detalle_Factura.Id_Caja);
             ViewBag.id_factura = new SelectList(db.Factura, "id_factura", "codigo", detalle_Factura.id_factura);
-            ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa", detalle_Factura.id_factura);
+            //ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa", detalle_Factura.id_factura);
             ViewBag.Id_Orden = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd", detalle_Factura.Id_Orden);
             return View(detalle_Factura);
         }
@@ -101,7 +101,7 @@ namespace Gerencia_Proyectos_.Controllers
             }
             ViewBag.Id_Caja = new SelectList(db.CajasRecepcion, "IdCaja", "IdUsuario", detalle_Factura.Id_Caja);
             ViewBag.id_factura = new SelectList(db.Factura, "id_factura", "codigo", detalle_Factura.id_factura);
-            ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa", detalle_Factura.id_factura);
+           // ViewBag.id_factura = new SelectList(db.Mesas, "IdMesa", "NumMesa", detalle_Factura.id_factura);
             ViewBag.Id_Orden = new SelectList(db.OrdenPedidos, "IdOrden", "CodProd", detalle_Factura.Id_Orden);
             return View(detalle_Factura);
         }
