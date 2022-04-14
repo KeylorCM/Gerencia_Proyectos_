@@ -75,18 +75,5 @@ namespace Gerencia_Proyectos_.Controllers
 
     }
 
-
-
-    //public class CarritoController : Controller
-    //{
-    //    // GET: Carrito
-    //    public ActionResult Index()
-    //    {
-    //        return View();
-    //    }
-
-
-
-
     
 }
