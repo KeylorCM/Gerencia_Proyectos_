@@ -84,11 +84,11 @@ namespace Gerencia_Proyectos_.Controllers
 
 
         //GET: OrdenPedidos
-        public ActionResult Index()
-        {
-            var ordenPedidos = db.OrdenPedidos.Include(o => o.MenuProductos).Include(o => o.Mesas);
-            return View(ce.OrdenPedidos.ToList().OrderBy(x=>x.Fecha));
-        }
+        //public ActionResult Index()
+        //{
+        //    var ordenPedidos = db.OrdenPedidos.Include(o => o.MenuProductos).Include(o => o.Mesas);
+        //    return View(ce.OrdenPedidos.ToList().OrderBy(x=>x.Fecha));
+        //}
 
         // GET: OrdenPedidos/Details/5
         public ActionResult Details(int? id)
@@ -109,7 +109,7 @@ namespace Gerencia_Proyectos_.Controllers
         public ActionResult Create()
         {
             ViewBag.IDProd = new SelectList(db.MenuProductos, "IDProd", "CodiProd");
-            ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa");
+           // ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa");
             return View();
         }
 
@@ -128,7 +128,7 @@ namespace Gerencia_Proyectos_.Controllers
             }
 
             ViewBag.IDProd = new SelectList(db.MenuProductos, "IDProd", "CodiProd", ordenPedidos.IDProd);
-            ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa", ordenPedidos.IdMesa);
+            ///ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa", ordenPedidos.IdMesa);
             return View(ordenPedidos);
         }
 
@@ -145,7 +145,7 @@ namespace Gerencia_Proyectos_.Controllers
                 return HttpNotFound();
             }
             ViewBag.IDProd = new SelectList(db.MenuProductos, "IDProd", "CodiProd", ordenPedidos.IDProd);
-            ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa", ordenPedidos.IdMesa);
+            ///ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa", ordenPedidos.IdMesa);
             return View(ordenPedidos);
         }
 
@@ -163,7 +163,7 @@ namespace Gerencia_Proyectos_.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IDProd = new SelectList(db.MenuProductos, "IDProd", "CodiProd", ordenPedidos.IDProd);
-            ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa", ordenPedidos.IdMesa);
+           // ViewBag.IdMesa = new SelectList(db.Mesas, "IdMesa", "NumMesa", ordenPedidos.IdMesa);
             return View(ordenPedidos);
         }
 

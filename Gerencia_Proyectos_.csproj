@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AdminMenuProductosController.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CajasRecepcionsController.cs" />
     <Compile Include="Controllers\Detalle_FacturaController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
@@ -153,9 +154,6 @@
       <DependentUpon>Modelo_BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MenuProductos.cs">
-      <DependentUpon>Modelo_BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Mesas.cs">
       <DependentUpon>Modelo_BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Modelo_BD.Context.cs">
@@ -292,9 +290,12 @@
     <Content Include="Views\OrdenPedidos\Details.cshtml" />
     <Content Include="Views\OrdenPedidos\Edit.cshtml" />
     <Content Include="Views\OrdenPedidos\Index.cshtml" />
+    <Content Include="Views\Carrito\AgregarCarrito.cshtml" />
+    <Content Include="Views\Carrito\FinalizaCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AgregarCarrito\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
