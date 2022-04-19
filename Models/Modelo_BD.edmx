@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="gp_CafeteriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="gp_CafeteriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CajasRecepcion">
           <Key>
             <PropertyRef Name="IdCaja" />
@@ -69,9 +69,9 @@
           <Property Name="IdMesa" Type="int" />
           <Property Name="Descrpción" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
-          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="1" />
           <Property Name="Fecha" Type="datetime" />
-          <Property Name="Total" Type="money" />
+          <Property Name="Total" Type="int" />
         </EntityType>
         <EntityType Name="Personal">
           <Key>
@@ -271,7 +271,8 @@
             <End Role="OrdenPedidos" EntitySet="OrdenPedidos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gp_CafeteriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -355,9 +356,9 @@
           <Property Name="IdMesa" Type="Int32" />
           <Property Name="Descrpción" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Total" Type="Int32" />
           <NavigationProperty Name="CajasRecepcion" Relationship="Self.FK__CajasRece__IdOrd__2F10007B" FromRole="OrdenPedidos" ToRole="CajasRecepcion" />
           <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK__Detalle_F__Id_Or__37A5467C" FromRole="OrdenPedidos" ToRole="Detalle_Factura" />
           <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__NumClie__33D4B598" FromRole="OrdenPedidos" ToRole="Factura" />
