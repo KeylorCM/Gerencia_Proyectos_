@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-center my-2">Lista de empleados</h2>
+<h2>Integrantes del Equipo - Colaboradores</h2>
 
 
-@*<div class="well">
+<div class="well">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12" >   
             <a href="@Url.Action("Create")" class="btn success">
@@ -18,42 +18,38 @@
 
     </div>
 
-</div>*@
+</div>
 
 
 
-<button class="btn btn-success my-4">
-    @Html.ActionLink("Crear nuevo usuario", "Create", new { @class = "bg-light" })
-</button>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Puesto)*@
-            Puesto
+            @Html.DisplayNameFor(model => model.Puesto)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Cedula)*@
-            Cedula
+            @Html.DisplayNameFor(model => model.Cedula)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Nombre)*@
-            Nombre
+            @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Apellidos)*@
-            Apellidos
+            @Html.DisplayNameFor(model => model.Apellidos)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Telefono)*@
-            Telefono
+            @Html.DisplayNameFor(model => model.Telefono)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Correo)*@
-            Correo
+            @Html.DisplayNameFor(model => model.Correo)
         </th>
         <th>
-            Acciones
+            @Html.DisplayNameFor(model => model.Contrasena)
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -77,9 +73,12 @@
             @Html.DisplayFor(modelItem => item.Correo)
         </td>
         <td>
-            @Html.ActionLink("Actualizar", "Edit", new { id=item.IdUsuario }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.IdUsuario }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdUsuario })
+            @Html.DisplayFor(modelItem => item.Contrasena)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdUsuario }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdUsuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario })
         </td>
     </tr>
 }

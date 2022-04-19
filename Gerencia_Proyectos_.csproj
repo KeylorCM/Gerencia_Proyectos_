@@ -200,7 +200,6 @@
       <DependentUpon>Modelo_BD.edmx</DependentUpon>
       <LastGenOutput>Modelo_BD.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

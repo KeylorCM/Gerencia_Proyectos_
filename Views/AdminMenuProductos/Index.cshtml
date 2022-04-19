@@ -4,11 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-center my-2">Menu Principal de Productos</h2>
+<h2>Menu Principal de Productos</h2>
 
-<button class="btn btn-success my-4">
-    @Html.ActionLink("Crear nuevo producto", "Create", new {@class = "bg-light" }) 
-</button>
+<p>
+    @Html.ActionLink("Crear nuevo producto", "Create")
+</p>
 <table class="table table-striped">
     <tr>
         <th>
@@ -20,12 +20,13 @@
             Tipo de Producto
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.DescProd)*@
-            Descripcion
+            @Html.DisplayNameFor(model => model.DescProd)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.PrecioProd)*@
-            Precio
+            @Html.DisplayNameFor(model => model.PrecioProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantProd)
         </th>
         <th></th>
     </tr>
@@ -43,6 +44,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PrecioProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantProd)
         </td>
         <td>
             @Html.ActionLink("Actualizar", "Edit", new { id=item.IDProd }) |
