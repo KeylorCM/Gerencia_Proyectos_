@@ -55,11 +55,93 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <!-- card para los proeudctos-->
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #4</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=4 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <!-- card para los proeudctos-->
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #5</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=5 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <!-- card para los proeudctos-->
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #6</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=6 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 mt-3">
+                    <!-- card para los proeudctos-->
+                    <div class="card text-center ">
+                        <div class="card-body ">
+                            <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/96/000000/external-table-restaurant-those-icons-lineal-those-icons-2.png " />
+                        </div>
+                        <div class="footer bg-secondary ">
+                            <h6 class="mt-2 text-white font-weight-bold lead ">Mesa #7</h6>
+                            <form method="post" action="/mesas/">
+                                <input type="number" style="display:none" value=7 name="mesa">
+                                <button class="btn btn-success mb-2 " href="producto.html ">Ver pedido</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         }
         else
         {
-            <h1 class="text-center text-dark m-5">Pedidos de mesas</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Mesa</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">@ViewData["desk"]</th>
+                        <th scope="row">@ViewData["price"]</th>
+                        <th scope="row" class="text-danger">@ViewData["status"]</th>
+                        <th>
+                            <form method="post" action="/pagar/">
+                            <button class="btn btn-success mb-2 ">Pagar</button>
+                            </form>
+                        </th>
+                    </tr>
+
+                </tbody>
+            </table>
         }
     }
 </div>

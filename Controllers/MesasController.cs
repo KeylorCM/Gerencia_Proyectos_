@@ -25,9 +25,48 @@ namespace Gerencia_Proyectos_.Controllers
         public ActionResult Index(int mesa)
         {
             ViewData["mesa"] = Convert.ToString(mesa);
+            Session["mesa"] = mesa;
             ViewData["estado"] = "2";
-
+            //var query = db.OrdenPedidos.OrderBy(x => x.IdMesa).AsQueryable();
+            //query = query.Where(x=>x.Estado == "1");
+            string query = "Select * from OrdenPedidos where IdMesa = "+mesa+" and estado = 1";
+            //OrdenPedidos department = db.OrdenPedidos.SqlQuery(query);
+            IEnumerable<OrdenPedidos> data = db.OrdenPedidos.SqlQuery(query);
+            data.ToList();
+            foreach (OrdenPedidos a in data)
+            {
+                if (a.Estado == "1")
+                {
+                    ViewData["status"] = "Pendiente de pagar";
+                }
+                ViewData["price"] = a.Total;
+                ViewData["desk"] = a.IdMesa;
+            }
             return View();
+            //return View();
+        }
+        [HttpPost]
+        public ActionResult pagar(int mesa)
+        {
+            ViewData["mesa"] = Convert.ToString(mesa);
+            ViewData["estado"] = "2";
+            //var query = db.OrdenPedidos.OrderBy(x => x.IdMesa).AsQueryable();
+            //query = query.Where(x=>x.Estado == "1");
+            string query = "Select * from OrdenPedidos";
+            //OrdenPedidos department = db.OrdenPedidos.SqlQuery(query);
+            IEnumerable<OrdenPedidos> data = db.OrdenPedidos.SqlQuery(query);
+            data.ToList();
+            foreach (OrdenPedidos a in data)
+            {
+                if (a.Estado == "1")
+                {
+                    ViewData["status"] = "Pendiente de pagar";
+                }
+                ViewData["price"] = a.Total;
+                ViewData["desk"] = a.IdMesa;
+            }
+            return View();
+            //return View();
         }
         // GET: Mesas/Details/5
         public ActionResult Details(int? id)

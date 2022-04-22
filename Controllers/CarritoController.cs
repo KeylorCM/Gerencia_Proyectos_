@@ -55,6 +55,7 @@ namespace Gerencia_Proyectos_.Controllers
             List<CarritoItem> compras = (List<CarritoItem>)Session["carrito"];
             if (compras != null && compras.Count > 0)
             {
+                
                 OrdenPedidos venta = new OrdenPedidos();
                 venta.Estado = "1";
                 venta.IdMesa = Convert.ToInt32(Session["Mesa"]);
@@ -68,6 +69,27 @@ namespace Gerencia_Proyectos_.Controllers
 
                 ce.OrdenPedidos.Add(venta);
                 ce.SaveChanges();
+                string query = "Select * from OrdenPedidos where IdMesa = " + Convert.ToInt32(Session["Mesa"]) + " and estado = 1";
+                IEnumerable<OrdenPedidos> data = ce.OrdenPedidos.SqlQuery(query);
+                data.ToList();
+                int pedido = 0;
+                foreach (OrdenPedidos a in data)
+                {
+                    
+                    pedido = a.IdOrden;
+                }
+                string id = "";
+                for (int i = 0; i < compras.Count; i++)
+                {
+                    Detalle_Factura productos = new Detalle_Factura();
+                    id = compras[i].Producto.CodiProd;
+                    id.ToString().Replace('"', ' ').Trim();
+                    productos.id_factura = pedido;
+                    productos.Id_Mesa = id;
+                    ce.Detalle_Factura.Add(productos);
+                    ce.SaveChanges();
+                }
+                
             }
             return View();
         }

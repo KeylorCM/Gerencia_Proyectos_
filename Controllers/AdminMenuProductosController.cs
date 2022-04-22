@@ -12,11 +12,13 @@ namespace Gerencia_Proyectos_.Controllers
 {
     public class AdminMenuProductosController : Controller
     {
+        
         private gp_CafeteriaEntities db = new gp_CafeteriaEntities();
 
         // GET: AdminMenuProductos
         public ActionResult Index()
         {
+            Session["rol"] = true;
             return View(db.MenuProductos.ToList());
         }
 

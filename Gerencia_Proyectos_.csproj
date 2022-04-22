@@ -139,6 +139,7 @@
     <Compile Include="Controllers\MenuProductosController.cs" />
     <Compile Include="Controllers\MesasController.cs" />
     <Compile Include="Controllers\OrdenPedidosController.cs" />
+    <Compile Include="Controllers\PagarController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -298,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pagar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
