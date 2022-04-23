@@ -75,19 +75,18 @@ namespace Gerencia_Proyectos_.Controllers
                 int pedido = 0;
                 foreach (OrdenPedidos a in data)
                 {
-                    
                     pedido = a.IdOrden;
                 }
                 string id = "";
                 for (int i = 0; i < compras.Count; i++)
                 {
+                    gp_CafeteriaEntities db = new gp_CafeteriaEntities();
                     Detalle_Factura productos = new Detalle_Factura();
                     id = compras[i].Producto.CodiProd;
-                    id.ToString().Replace('"', ' ').Trim();
                     productos.id_factura = pedido;
-                    productos.Id_Mesa = id;
-                    ce.Detalle_Factura.Add(productos);
-                    ce.SaveChanges();
+                    productos.Id_Mesa = Convert.ToInt32(id);
+                    db.Detalle_Factura.Add(productos);
+                    db.SaveChanges();
                 }
                 
             }
