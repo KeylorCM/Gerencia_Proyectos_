@@ -24,6 +24,7 @@ namespace Gerencia_Proyectos_.Controllers
         [HttpPost]
         public ActionResult Index(int mesa)
         {
+            int idFactura = 0;
             ViewData["mesa"] = Convert.ToString(mesa);
             Session["mesa"] = mesa;
             ViewData["estado"] = "2";
@@ -39,8 +40,19 @@ namespace Gerencia_Proyectos_.Controllers
                 {
                     ViewData["status"] = "Pendiente de pagar";
                 }
+
                 ViewData["price"] = a.Total;
                 ViewData["desk"] = a.IdMesa;
+                idFactura = a.IdOrden;
+            }
+            string query2 = "Select * from Detalle_Factura  where id_factura = " + idFactura;
+            IEnumerable<Detalle_Factura> dataFactura = db.Detalle_Factura.SqlQuery(query);
+            dataFactura.ToList();
+            int producto = 0;
+            foreach (Detalle_Factura a in dataFactura)
+            {
+                producto = Convert.ToInt32(a.Id_Mesa);
+               
             }
             return View();
             //return View();

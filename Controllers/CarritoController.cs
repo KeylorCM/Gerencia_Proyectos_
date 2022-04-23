@@ -84,6 +84,7 @@ namespace Gerencia_Proyectos_.Controllers
                     Detalle_Factura productos = new Detalle_Factura();
                     id = compras[i].Producto.CodiProd;
                     productos.id_factura = pedido;
+                    productos.Id_Orden = compras[i].Cantidad;
                     productos.Id_Mesa = Convert.ToInt32(id);
                     db.Detalle_Factura.Add(productos);
                     db.SaveChanges();
